@@ -26,5 +26,5 @@ render() {  # render <svg-basename> <width> <height>
   echo "charts/$1.png"
 }
 
-render 1-open-vs-closed-spend        1600 1064
-render 2-open-vs-closed-spend-by-lab 1600 1144
+render 1-open-vs-closed-spend        1600 990
+render 2-open-vs-closed-spend-by-lab 1600 1078

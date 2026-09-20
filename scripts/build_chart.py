@@ -11,7 +11,7 @@ import json, collections, sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from window import (FROM, TO, OPEN, BLUE, YELLOW, PLOT_BG, CARD_BG, INK, MUTED,
+from window import (FROM, TO, OPEN, BLUE, YELLOW, PLOT_BG, INK, MUTED,
                     DIM, STAMP, SANS, MONO, REPO_URL, ATTRIBUTION, fmt_date)
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -36,15 +36,14 @@ def load():
 
 
 def render(series):
-    W, H = 1600, 1064
-    L, R, T, B = 96, 1504, 300, 800
+    W, H = 1600, 990
+    L, R, T, B = 96, 1504, 210, 710
     pw, ph = R - L, B - T
     n = len(series); slot = pw / n; bw = slot * BAR_FILL
 
     s = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" '
          f'viewBox="0 0 {W} {H}" font-family="{SANS}">']
-    s.append(f'<rect width="{W}" height="{H}" rx="28" fill="{CARD_BG}"/>')
-    s.append(f'<rect x="{L-40}" y="{T-140}" width="{pw+80}" height="{ph+376}" rx="18" fill="{PLOT_BG}"/>')
+    s.append(f'<rect width="{W}" height="{H}" fill="{PLOT_BG}"/>')
 
     s.append(f'<text x="{L}" y="{T-78}" font-size="40" font-weight="700" fill="{INK}">'
              f'Open vs. Closed Model Spend</text>')
@@ -79,7 +78,7 @@ def render(series):
                  f'font-size="21" fill="{INK}">{val:.1f}%</text>')
 
     for i, line in enumerate(ATTRIBUTION):
-        s.append(f'<text x="{L}" y="{H-54+i*24}" font-family="{MONO}" font-size="16" '
+        s.append(f'<text x="{L}" y="{H-66+i*24}" font-family="{MONO}" font-size="16" '
                  f'fill="{DIM}">{line}</text>')
     s.append('</svg>')
     return '\n'.join(s)
